@@ -7,6 +7,7 @@
     "start": "node r dotenv/config ./bin/www.js",
     "dev": "nodemon -r dotenv/config ./bin/www.js",
     "dotenv": "node -r dotenv/config test.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "dbcreatetable": "node -r dotenv/config ./db/scripts/createTable.js",
     "dbpopulatetable": "node -r dotenv/config ./db/scripts/populateTable.js",
     "dbdeletetable": "node -r dotenv/config ./db/scripts/deleteTable.js",
@@ -24,6 +25,7 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.5",
     "dotenv": "^10.0.0",
     "jest": "^27.4.5",
     "nodemon": "^2.0.15"

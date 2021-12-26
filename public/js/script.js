@@ -1,6 +1,6 @@
 import romanNumerals from "./numerals.js";
 // import quotes from "./quotes.js";
-// import fetch from 'node-fetch';
+
 
 // NUMBER CONVERSION CODE [start]
 
@@ -32,7 +32,7 @@ function convertToRoman(num) {
             convertedNumber.unshift(romanNumerals[i][arrFromNum[i]]);
         }
     }
-   outputRomanNumeral(convertedNumber.join(""));
+return convertedNumber.join("");
 }
 
 // GET USER INPUT
@@ -42,8 +42,11 @@ const getUserInput = function(ev) {
     let num = document.querySelector("form").elements[0].value;
     // let verify = validate();
     num = Number(num);
-    if (!num || num < 1 || num > 5999) {num = "Output"} else {
-    convertToRoman(num);
+    if (!num || num < 1 || num > 5999) {
+        num = "Output"
+    } else {
+    let convertedNumber = convertToRoman(num);
+    outputRomanNumeral(convertedNumber);
 }
 }
 
@@ -102,3 +105,5 @@ updateQuote(quotes);
 setInterval(updateQuote, 12000)
 
 // QUOTE GENERATOR CODE [end]
+
+export {getUserInput, convertToRoman, updateQuote, getRandomInt, outputRomanNumeral }
