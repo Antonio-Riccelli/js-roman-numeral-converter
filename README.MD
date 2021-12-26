@@ -1,6 +1,6 @@
 # Roman numeral converter and quote generator
 
- [Visit here](https://antonio-riccelli.github.io/js-roman-numeral-converter/)
+![Page demo](/public/images/demo.gif)
 
  ---
 
