@@ -1,0 +1,24 @@
+/* TAILWINDCSS UTILITY CLASSES */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* FONTS */
+
+@font-face {
+    font-family: Trajanus;
+    src: url("../fonts/trajanus-bricks-font/TrajanusbrixInvers-WyVV9.ttf");
+}
+
+/* GENERAL STYLING */
+
+body {
+    background-image: url("../img/bw-2.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+header h1 {
+    font-family: Trajanus;
+}

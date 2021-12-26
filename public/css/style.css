@@ -1,0 +1,16 @@
+/* * {
+    color: white;
+} */
+
+* {
+    font-family: 'Space Mono', monospace;
+}
+
+body {
+    background-image: url("../images/background.jpg");
+    /* background-image: url("../images/bw-1.jpg"); */
+    /* background-image: url("../images/bw-2.jpg"); */
+    /* background-image: url("../images/bw-3.jpg"); */
+    /* background-image: url("../images/bw-4.jpg"); */
+}
+

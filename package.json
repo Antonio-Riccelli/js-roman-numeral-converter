@@ -1,0 +1,31 @@
+{
+  "name": "js-roman-numeral-converter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node r dotenv/config ./bin/www.js",
+    "dev": "nodemon -r dotenv/config ./bin/www.js",
+    "dotenv": "node -r dotenv/config test.js",
+    "dbcreatetable": "node -r dotenv/config ./db/scripts/createTable.js",
+    "dbpopulatetable": "node -r dotenv/config ./db/scripts/populateTable.js",
+    "dbdeletetable": "node -r dotenv/config ./db/scripts/deleteTable.js",
+    "dbdeletedata": "node -r dotenv/config ./db/scripts/deleteData.js",
+    "dbaddquote": "node -r dotenv/config ./db/scripts/addQuote.js",
+    "dbquerytable": "node -r dotenv/config ./db/scripts/queryTable.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "node-fetch": "^3.1.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "jest": "^27.4.5",
+    "nodemon": "^2.0.15"
+  }
+}
