@@ -1,22 +1,5 @@
 import romanNumerals from "./numerals";
-// import { convertToRoman } from "./script";
-
-/* The original function included some stricly frontend parts, which would cause the Jest tests to fail, unless I change test environment to JsDom. As I will test the Frontend separately, I deemed that unnecessary and included the function here, minus the frontend bit.
-*/
-
-
-function convertToRoman(num) {
-    let convertedNumber = [];
-    let arrFromNum = [...num.toString()].reverse();
-    for (let i = 0; i < arrFromNum.length; i++) {
-        if (arrFromNum[i] === 0) {
-            continue;
-        } else {
-            convertedNumber.unshift(romanNumerals[i][arrFromNum[i]]);
-        }
-    }
-    return convertedNumber.join("");
-}
+import convertToRoman from "./conversion";
 
 describe("Testing the Roman numeral conversion algorithm", () => {
     test("455 should return CDLV", () => {
@@ -59,10 +42,10 @@ describe("Testing the Roman numeral conversion algorithm", () => {
         expect(actual).toBe(expected);
     });
 
-    test("0 should return an error", () => {
+    test("0 should not return an empty output", () => {
         // ARRANGE 
         const arabicNumber = 0;
-        const expected = new Error("Please enter a valid number");
+        const expected = "";
         // ACT
         const actual = convertToRoman(arabicNumber);
         // ASSERT

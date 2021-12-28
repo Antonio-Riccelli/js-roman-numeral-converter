@@ -28,6 +28,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.16.5",
     "dotenv": "^10.0.0",
     "jest": "^27.4.5",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
   }
 }

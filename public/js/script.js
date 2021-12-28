@@ -1,58 +1,75 @@
 import romanNumerals from "./numerals.js";
-// import quotes from "./quotes.js";
-
+import convertToRoman from "./conversion.js";
 
 // NUMBER CONVERSION CODE [start]
 
 // VALIDATE USER INPUT
-const validate = function(ev) {
-    let message = "";
-    if (num >= 1 && num <= 5999 && num.length > 0) {
-        return true;
-    } else  {
-        message = "Please input number between 1 and 5999"
+const validate = function(input) {
+    if (typeof input === 'number' && input >= 1 && input <= 5999) {
+        console.log(`This is a valid input: ${input}. Data type: ${typeof input}.`)
+        return input;
+    } else {
+        let error = Error('Please input a valid number between 1 and 5999.\nEven Justinian is laughing at you.');
+        console.error(error);
+        return error;
     }
 } 
    
 // ADD ROMAN NUMERAL TO HTML
 function outputRomanNumeral(roman) {
-    let par = document.getElementById("output");    
+    let par = document.getElementById("output");
+    par.classList.remove("bg-danger", "text-white", "error-message")   
     par.innerText = roman;
     par.classList.add("border-bottom","border-dark","border-2" );
 }
 
-// CONVERT TO ROMAN NUMERAL
-function convertToRoman(num) {
-    let convertedNumber = [];
-    let arrFromNum = [...num.toString()].reverse();
-    for (let i = 0; i < arrFromNum.length; i++) {
-        if (arrFromNum[i] === 0) {
-            continue;
-        } else {
-            convertedNumber.unshift(romanNumerals[i][arrFromNum[i]]);
-        }
-    }
-return convertedNumber.join("");
+// DISPLAY ERROR
+function outputError(error) {
+    let par = document.getElementById("output");
+    par.innerText = error.message;
+    par.classList.add("border-bottom","border-dark","border-2", "bg-danger", "text-white", "error-message");
+    throw error;
+}
+
+// DISPLAY ERROR POPUP
+function displayPopup() {
+    let popupDiv = document.querySelector(".popup");
+    let popup = document.querySelector("#justinian");
+    popup.style.display = "inline-block";
+    popup.style.visibility = "visible";
+    popup.style.animation = "fadeIn 2s";
+    popupDiv.style.display = "inline-block";
+    popupDiv.style.visibility = "visible";
+    popupDiv.style.animation = "fadeIn 2s";
+    console.log("Function executed")
 }
 
 // GET USER INPUT
 const getUserInput = function(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
     let num = document.querySelector("form").elements[0].value;
-    // let verify = validate();
     num = Number(num);
-    if (!num || num < 1 || num > 5999) {
-        num = "Output"
-    } else {
-    let convertedNumber = convertToRoman(num);
-    outputRomanNumeral(convertedNumber);
+    console.log(`This is the current user input: ${num}.\nIts data type is ${typeof num}.`)
+    return num;
 }
+
+// THE FUNCTION TO EXECUTE ALL FUNCTIONS
+
+function convertAndDisplay(){
+let userInput = getUserInput();
+console.log(`This is what userInput returned: ${userInput}. Data type: ${typeof userInput}.`)
+let validatedInput = validate(userInput);
+if (typeof validatedInput === 'object') {
+    displayPopup();
+    outputError(validatedInput);
+
+}
+let convertedNumber = convertToRoman(validatedInput);
+outputRomanNumeral(convertedNumber);
 }
 
 // GET ELEMENT AND ADD CLICK EVENT LISTENER
 const init = function() {
-    document.getElementById("button-send").addEventListener("click", getUserInput);
+    document.getElementById("button-send").addEventListener("click", convertAndDisplay);
 }
 
 init();
