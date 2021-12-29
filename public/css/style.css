@@ -1,14 +1,27 @@
-* {
+body {
+    background-image: url("../images/bw-2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     font-family: 'Space Mono', monospace;
-};
+}
 
 
-.popup {
+/* .popup {
     position: relative;
     display: none;
     user-select: none;
     width: 150px;
     height: 150px;
+} */
+
+.rounded-borders{
+    border-radius: 20px;
+}
+
+#author-picture {
+    max-width: 550px;
+    max-height: 550px;
 }
 
 #justinian {
