@@ -37,6 +37,21 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
   - After a few weeks studying with [School of Code](https://www.schoolofcode.co.uk/), I've felt confident to tackle this again. So far, the backend has been set up and seems to be working fine. I have successfully tested this using [Postman API platform](https://www.postman.com/) (I prefer the desktop version) and have been able to populate the database with the initial data. 
   - The frontend is also linked to the backend and working. I am now focusing on the styling whilst familiarising myself with Bootstrap. 
 
+- #### 29/12/2021
+  - Added some tests for the conversion algorithm using Jest. As the algorithm wsa initially included in the frontend JS file, I was getting strange errors as Jest was trying to test other bits of code that interacted with the frontend. There was no point in over-complicating things and use things like JSDom, so I moved the conversion algorithm to a separate file and imported it as a module. This way, the tests work just fine. 
+  - I have tried adding further tests for the API via Supertest, but I keep getting errors I have been unable to fix, despite the API working just fine. Will keep on chipping at it until it works (or until I post a question on Stackoverflow...)
+  - Slightly tweaked the styling to make it look more appealing. Added a collapsable navbar and a slight touch of color. Fixed some size issues with the picture. Getting more familiar with Bootstrap and its model. 
+
+---
+
+### To do:
+
+- [ ] Dark mode/Light Mode
+  - [ ] Changing background pictures. Light and dark mode will have their own set of pictures: one highlighting the greatness of the Roman Empire (light), another one its ruins and decadence (dark).
+- [ ] Option to manually change quotes
+- [ ] More quotes in the database 
+
+
 ---
 
  #### Approaching the conversion algorithm:
