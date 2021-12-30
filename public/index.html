@@ -85,8 +85,8 @@
         <!-- OUTPUT AREA -->
 
         <section class="col-6 bg-light rounded-borders" id="output-area">
-          <div class="popup">
-            <span id="justinian"> LOL! </span>
+          <div class="popup noneHidden">
+            <span id="justinian" class="noneHidden"> LOL! </span>
           </div>
           <h2 class="display-5">Output</h2>
           <p class="p-1 my-5" id="output">
@@ -104,21 +104,22 @@
           src=""
           alt="picture"
           id="author-picture"
-          class="col-6 h-50 col-sm-6 mx-sm-auto col-md-5 mw-100 rounded-borders"
+          class="col-6 col-sm-6 mx-sm-auto col-md-6 rounded-borders"
         />
-        <div class="col-6 col-md-6 bg-light h-25 rounded-borders">
+        <div class="col-12 col-md-6 bg-light h-25 rounded-borders" id="quotewrapper">
           <q class="fst-italic"> </q>
           <p class="" id="author"></p>
         </div>
       </section>
 
-      <section class="row mt-3 " id="user-interaction">
-        <section class="col-12 " id="quote-wrapper">
-          <div class="" id="user-input-wrapper">
-          <input type="number" name="quote-id" id="quote-id" >
-          <button class="btn rounded-pill p-1 mb-3 bg-white" id="quote-button">Click here to see all the quotes</button>
+      <section class="row mt-3 mb-4" id="user-interaction">
+        <section class="col-12 rounded-borders" id="quote-wrapper">
+          <div class="mb-3" id="user-input-wrapper">
+          <input type="number" class="rounded-borders p-2" min=1  name="quote-id" id="quote-id" placeholder="Search by quote ID">
+          <input type="text" class="rounded-borders p-2" min=1  name="authorName" id="authorName" placeholder="Search by author name">
+          <button class="btn rounded-pill p-2 bg-white" id="quote-button">Click here to see all the quotes</button>
         </div>
-          <div class="bg-light" id="quotes-container">
+          <div class="bg-light rounded-borders" id="quotes-container">
             <!-- THE QUOTES RETRIEVED WILL APPEAR HERE -->
 
           </div>

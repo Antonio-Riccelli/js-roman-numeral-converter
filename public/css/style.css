@@ -4,6 +4,7 @@
     --error: #DC3545;
 }
 
+
 body {
     background-image: url("../images/bw-2.jpg");
     background-repeat: no-repeat;
@@ -22,12 +23,12 @@ body {
 } */
 
 .rounded-borders{
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 #author-picture {
-    max-width: 550px;
-    max-height: 550px;
+    width: 500px;
+    height: 475px;
 }
 
 audio {
@@ -35,6 +36,10 @@ audio {
     visibility: hidden;
 }
 
+#quote-id, #authorName {
+    width: 26%;
+    text-align: center;
+}
 
 
 #mode {
@@ -47,7 +52,7 @@ audio {
 
 #justinian {
     display: none;
-    visibility: hidden;
+     visibility: hidden;
     position: absolute;
     width: 150px;
     height: 150px;
@@ -63,11 +68,31 @@ audio {
     z-index: 1;
 }
 
+
+
 /* LIGHT/DARK MODE */
 
 
 /* ANIMATIONS, KEYFRAMES ETC. */
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+.fadeInOut {
+    opacity: 0;
+    animation: 4s ease-in-out  fadeIn; 
 }
+
+
+@keyframes fadeIn {
+    0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      /* 100% {
+        opacity: 0;
+      } */
+    }
+
+    /* from {opacity: 0;}
+    to {opacity: 1;}
+} */
+
