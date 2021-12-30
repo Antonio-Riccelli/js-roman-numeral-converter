@@ -20,12 +20,16 @@
 
   </head>
   <body>
+
+
+
     <!-- NAVBAR -->
   
      
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Roman Numeral Converter</a>
+        <img src="images/sun-warm.svg" alt="picture for light or dark mode" id="mode" title="Click me to switch to dark or light mode.">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,7 +111,24 @@
           <p class="" id="author"></p>
         </div>
       </section>
+
+      <section class="row mt-3 " id="user-interaction">
+        <section class="col-12 " id="quote-wrapper">
+          <div class="" id="user-input-wrapper">
+          <input type="number" name="quote-id" id="quote-id" >
+          <button class="btn rounded-pill p-1 mb-3 bg-white" id="quote-button">Click here to see all the quotes</button>
+        </div>
+          <div class="bg-light" id="quotes-container">
+            <!-- THE QUOTES RETRIEVED WILL APPEAR HERE -->
+
+          </div>
+        </section>
+      </section>
     </main>
+    <audio id="audio">
+      <source src="./assets/laugh.mp3" type="audio/mpeg" >
+    </audio>
+
     <script type="module" src="./js/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

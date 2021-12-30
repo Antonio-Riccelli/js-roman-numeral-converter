@@ -31,6 +31,11 @@ function outputError(error) {
     throw error;
 }
 
+function playAudio() {
+    let audio = document.getElementById("audio");
+    audio.play();
+}
+
 // DISPLAY ERROR POPUP
 function displayPopup() {
     let popupDiv = document.querySelector(".popup");
@@ -60,6 +65,7 @@ console.log(`This is what userInput returned: ${userInput}. Data type: ${typeof 
 let validatedInput = validate(userInput);
 if (typeof validatedInput === 'object') {
     displayPopup();
+    playAudio();
     outputError(validatedInput);
 
 }
@@ -122,5 +128,60 @@ updateQuote(quotes);
 setInterval(updateQuote, 12000)
 
 // QUOTE GENERATOR CODE [end]
+
+
+// RETRIEVE ALL QUOTES
+
+const getQuotesUponUserRequest = () => {
+    const idInput = document.getElementById("quote-id").value;
+
+if (idInput === 0 || !idInput) {
+    quotes.forEach(quote => {
+        const quotesContainer = document.getElementById("quotes-container");
+        const newQuoteWrapper = document.createElement("div");
+        const authorDiv = document.createElement("div");
+        const quoteDiv = document.createElement("q");
+        authorDiv.innerText = quote.author;
+        authorDiv.classList.toggle("display-6")
+        quoteDiv.innerText = quote.quote;
+        newQuoteWrapper.appendChild(authorDiv);
+        newQuoteWrapper.appendChild(quoteDiv);
+        quotesContainer.appendChild(newQuoteWrapper);
+    })
+}
+}
+
+function activateQuoteRequestInput() {
+    const quoteButton = document.getElementById("quote-button");
+    quoteButton.addEventListener("click", getQuotesUponUserRequest);
+}
+
+activateQuoteRequestInput()
+
+// LIGHT/DARK MODE 
+let state = "light";
+
+const toggleMode = () => {
+if (state === "light") {
+    state === "dark";
+    document.body.style.color = "black";
+} else {
+    state === "light";
+    document.body.style.color = "white";
+}
+const source = modePicture.src;
+if (/color/.test(source)) {
+    modePicture.src = "images/sun-warm.svg"
+} else {
+modePicture.setAttribute("src", "images/sun-color.svg")
+}
+let navbar = document.querySelector("nav");
+navbar.classList.toggle("bg-dark");
+navbar.classList.toggle("bg-light");
+}
+
+const modePicture = document.querySelector("#mode");
+modePicture.addEventListener("click", toggleMode);
+
 
 export {getUserInput, convertToRoman, updateQuote, getRandomInt, outputRomanNumeral }
