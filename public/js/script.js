@@ -1,5 +1,6 @@
 import romanNumerals from "./numerals.js";
 import convertToRoman from "./conversion.js";
+import Typed from typed.js;
 
 // NUMBER CONVERSION CODE [start]
 
@@ -17,9 +18,15 @@ const validate = function (input) {
 
 // ADD ROMAN NUMERAL TO HTML
 function outputRomanNumeral(roman) {
+    let options = {
+    strings: [`${roman}`],
+    typeSpeed:90,
+    };
+    
     let par = document.getElementById("output");
     par.classList.remove("bg-danger", "text-white", "error-message")
-    par.innerText = roman;
+    let typed = new Typed('#spanOutput', options);
+    // par.innerText = roman;
     par.classList.add("border-bottom", "border-dark", "border-2");
 }
 

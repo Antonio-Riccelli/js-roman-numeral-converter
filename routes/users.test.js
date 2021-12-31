@@ -38,3 +38,7 @@ describe("checking get /users response", function () {
       });
   });
 });
+
+afterAll(async () => {
+  await pool.end();
+});
