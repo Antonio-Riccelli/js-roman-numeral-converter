@@ -22,39 +22,16 @@
   <body>
     <!-- NAVBAR -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg  lightMode">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Roman Numeral Converter</a>
+        <h1 class="navbar-brand" >Roman Numeral Converter</h1>
         <img
           src="images/sun-warm.svg"
           alt="picture for light or dark mode"
           id="mode"
           title="Click me to switch to dark or light mode."
         />
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Converter</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Quotes</a>
-            </li>
-          </ul>
-        </div>
+       
       </div>
     </nav>
 
@@ -68,8 +45,9 @@
             col-6
             justify-content-center
             align-content-center
-            bg-light
+            lightMode
             rounded-borders
+
           "
           id="input"
         >
@@ -82,13 +60,13 @@
               min="1"
               max="5999"
               id="input-number"
-              class="col-12 text-center rounded-2 p-1 my-3"
+              class="col-12 text-center rounded-2 p-1 my-3 lightMode"
               required
             />
             <input
               type="button"
               value="Convert"
-              class="col-12 rounded-pill p-1 mb-3"
+              class="col-12 rounded-pill p-1 mb-3 lightMode"
               id="button-send"
             />
           </form>
@@ -96,7 +74,7 @@
 
         <!-- OUTPUT AREA -->
 
-        <section class="col-6 bg-light rounded-borders" id="output-area">
+        <section class="col-6 lightMode rounded-borders" id="output-area">
           <div class="popup noneHidden">
             <span id="justinian" class="noneHidden"> LOL! </span>
           </div>
@@ -111,15 +89,15 @@
 
       <!-- QUOTE AREA -->
 
-      <section class="row d-md-flex mt-3" id="quote-section">
+      <section class="row d-md-flex mt-3 justify-content-center" id="quote-section">
         <img
           src=""
           alt="picture"
           id="author-picture"
-          class="col-6 col-sm-6 mx-sm-auto col-md-6 rounded-borders"
+          class="col-6 col-sm-6 col-lg-6 mx-sm-auto col-md-6 rounded-borders"
         />
         <div
-          class="col-12 col-md-6 bg-light h-25 rounded-borders"
+          class="col-12 col-md-6 col-lg-6 lightMode h-25 rounded-borders"
           id="quotewrapper"
         >
           <q class="fst-italic"> </q>
@@ -129,10 +107,10 @@
 
       <section class="row mt-3 mb-4" id="user-interaction">
         <section class="col-12 rounded-borders" id="quote-wrapper">
-          <div class="mb-3" id="user-input-wrapper">
+          <div class="mb-3 " id="user-input-wrapper">
             <input
               type="number"
-              class="rounded-borders p-2"
+              class="rounded-borders p-2 lightMode"
               min="1"
               name="quote-id"
               id="quote-id"
@@ -146,11 +124,11 @@
               id="authorName"
               placeholder="Search by author name"
             />
-            <button class="btn rounded-pill p-2 bg-white" id="quote-button">
+            <button class="btn rounded-pill p-2 lightMode" id="quote-button">
               Click here to get your quote/s
             </button>
           </div>
-          <div class="bg-light rounded-borders" id="quotes-container">
+          <div class="lightMode rounded-borders" id="quotes-container">
             <!-- THE QUOTES RETRIEVED WILL APPEAR HERE -->
           </div>
         </section>

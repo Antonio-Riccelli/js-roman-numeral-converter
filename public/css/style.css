@@ -2,6 +2,8 @@
     --dark-tone: #000;
     --light-tone: #F8F9FA;
     --error: #DC3545;
+    --text-dark: #000018;
+    --text-light: #F8F9FA;
 }
 
 
@@ -13,15 +15,6 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
-
-/* .popup {
-    position: relative;
-    display: none;
-    user-select: none;
-    width: 150px;
-    height: 150px;
-} */
-
 .rounded-borders{
     border-radius: 30px;
 }
@@ -30,6 +23,14 @@ body {
     width: 500px;
     height: 475px;
 }
+
+nav {
+    color: black;
+}
+
+.placeholderColor::-webkit-input-placeholder {
+    color: var(--text-light);
+ }
 
 audio {
     display: none;
@@ -68,9 +69,17 @@ audio {
     z-index: 1;
 }
 
-
-
 /* LIGHT/DARK MODE */
+
+.lightMode {
+    background-color: var(--light-tone);
+    color: var(--text-dark); 
+}
+
+.darkMode {
+    background-color: var(--dark-tone);
+    color: var(--text-light);
+}
 
 
 /* ANIMATIONS, KEYFRAMES ETC. */
@@ -79,7 +88,6 @@ audio {
     animation: 4s ease-in-out  fadeIn; 
 }
 
-
 @keyframes fadeIn {
     0%, 100% {
         opacity: 0;
@@ -87,12 +95,5 @@ audio {
       50% {
         opacity: 1;
       }
-      /* 100% {
-        opacity: 0;
-      } */
     }
-
-    /* from {opacity: 0;}
-    to {opacity: 1;}
-} */
 

@@ -17,17 +17,9 @@ const validate = function (input) {
 
 // ADD ROMAN NUMERAL TO HTML
 function outputRomanNumeral(roman) {
-    console.log(typeof roman);
-    let options = {
-    strings: [roman],
-    typeSpeed:100,
-    smartBackspace: false
-    };
-    console.log(options)
     let par = document.getElementById("output");
     par.classList.remove("bg-danger", "text-white", "error-message");
-    //  par.innerText = roman;
-    let typed = new Typed(par, options);
+     par.innerText = roman;
     par.classList.add("border-bottom", "border-dark", "border-2");
 }
 
@@ -149,8 +141,6 @@ setInterval(updateQuote, 12000)
 
 // RETRIEVE ALL QUOTES
 
-
-
 const getQuotesUponUserRequest = () => {
     const quotesContainer = document.getElementById("quotes-container");
     quotesContainer.classList.toggle("p-2", "p-2");
@@ -169,6 +159,7 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
+            newQuoteWrapper.classList.toggle("lightMode");
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
             authorDiv.innerText = retrievedQuote.author;
@@ -184,6 +175,7 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
+            newQuoteWrapper.classList.toggle("lightMode");
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
             authorDiv.innerText = quote.author;
@@ -202,6 +194,7 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
+            newQuoteWrapper.classList.toggle("lightMode");
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
             authorDiv.innerText = retrievedQuote.author;
@@ -212,7 +205,6 @@ const getQuotesUponUserRequest = () => {
             quotesContainer.appendChild(newQuoteWrapper);
     }
 }
-
 
 
 function activateQuoteRequestInput() {
@@ -226,22 +218,82 @@ activateQuoteRequestInput()
 let state = "light";
 
 const toggleMode = () => {
-    if (state === "light") {
-        state === "dark";
-        document.body.style.color = "black";
-    } else {
-        state === "light";
-        document.body.style.color = "white";
-    }
+    let navbar = document.querySelector("nav");
+    let input = document.querySelector("#input");
+    let output = document.querySelector("#output-area");
+    let buttonSend = document.querySelector("#button-send");
+    let spanOutput = document.querySelector("#spanOutput");
+    let quoteWrapper = document.querySelector("#quotewrapper");
+    let quoteButton = document.querySelector("#quote-button");
+    let inputNumber = document.querySelector("#input-number");
+    let quoteId = document.querySelector("#quote-id");
+    let authorId = document.querySelector("#authorName");
+    let quotesContainer = document.querySelector("#quotes-container");
+    console.log(quotesContainer);
     const source = modePicture.src;
+
     if (/color/.test(source)) {
-        modePicture.src = "images/sun-warm.svg"
+        modePicture.src = "images/sun-warm.svg";
+        document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
     } else {
         modePicture.setAttribute("src", "images/sun-color.svg")
+        document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
     }
-    let navbar = document.querySelector("nav");
-    navbar.classList.toggle("bg-dark");
-    navbar.classList.toggle("bg-light");
+    
+        navbar.classList.toggle("lightMode");
+        navbar.classList.toggle("darkMode");
+        input.classList.toggle("lightMode");
+        input.classList.toggle("darkMode");
+        input.classList.toggle("border-light");
+        input.classList.toggle("border");
+        output.classList.toggle("lightMode");
+        output.classList.toggle("darkMode");
+        output.classList.toggle("border");
+        output.classList.toggle("border-light");
+        buttonSend.classList.toggle("lightMode");
+        buttonSend.classList.toggle("darkMode");
+        buttonSend.classList.toggle("border-light");
+        spanOutput.classList.toggle("border-dark");
+        spanOutput.classList.toggle("border-light");
+        quoteWrapper.classList.toggle("lightMode");
+        quoteWrapper.classList.toggle("darkMode");
+        quoteWrapper.classList.toggle("border");
+        quoteWrapper.classList.toggle("border-light");
+        quoteButton.classList.toggle("lightMode");
+        quoteButton.classList.toggle("darkMode");
+        quoteButton.classList.toggle("border");
+        quoteButton.classList.toggle("border-light");
+        inputNumber.classList.toggle("lightMode");
+        inputNumber.classList.toggle("darkMode");
+        inputNumber.classList.toggle("placeholderColor");
+        inputNumber.classList.toggle("border");
+        inputNumber.classList.toggle("border-light");
+        quoteId.classList.toggle("lightMode");
+        quoteId.classList.toggle("darkMode");
+        quoteId.classList.toggle("placeholderColor");
+        quoteId.classList.toggle("border");
+        quoteId.classList.toggle("border-light");
+        authorId.classList.toggle("lightMode");
+        authorId.classList.toggle("darkMode");
+        authorId.classList.toggle("placeholderColor");
+        authorId.classList.toggle("border");
+        authorId.classList.toggle("border-light");
+        quotesContainer.classList.toggle("darkMode");
+        quotesContainer.classList.toggle("lightMode");
+        quotesContainer.classList.toggle("border");
+        quotesContainer.classList.toggle("border-light");
+
+        let allQuotes = document.querySelector("#quotes-container").children;
+        console.log("These are all the quotes:", allQuotes, "Plus one", allQuotes[0])
+        if (allQuotes.length) {
+           for (let i = 0; i < allQuotes.length; i++) {
+            allQuotes[i].classList.toggle("lightMode");
+            allQuotes[i].classList.toggle("darkMode");
+            allQuotes[i].classList.toggle("border");
+            allQuotes[i].classList.toggle("border-light");
+           }
+        } 
+    
 }
 
 const modePicture = document.querySelector("#mode");
