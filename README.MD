@@ -40,14 +40,21 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
 - #### 29/12/2021
   - Added some tests for the conversion algorithm using Jest. As the algorithm wsa initially included in the frontend JS file, I was getting strange errors as Jest was trying to test other bits of code that interacted with the frontend. There was no point in over-complicating things and use things like JSDom, so I moved the conversion algorithm to a separate file and imported it as a module. This way, the tests work just fine. 
   - I have tried adding further tests for the API via Supertest, but I keep getting errors I have been unable to fix, despite the API working just fine. Will keep on chipping at it until it works (or until I post a question on Stackoverflow...)
-  - Slightly tweaked the styling to make it look more appealing. Added a collapsable navbar and a slight touch of color. Fixed some size issues with the picture. Getting more familiar with Bootstrap and its model. 
+  - Slightly tweaked the styling to make it look more appealing. Added a collapsable navbar and a slight touch of color. Fixed some size issues with the picture. Getting more familiar with Bootstrap and its model.
+
+- #### 01/01/2022
+  - Completed the dark/light mode feature. It also switches the background-image to a more tone-fitting one. The code is not very clean and will need some refactoring.
+  - I have tried implementing Typed.JS on the converted number, but it seems to have issues with dynamically generated values, so I've currently put it aside a nice-to-have. 
+  - The background image seems to stretch and pixelate when I generated another div to show all the quotes. I haven't spent time trying to fix this, but it's of the next tasks.
+
 
 ---
 
 ### To do:
 
-- [ ] Dark mode/Light Mode
-  - [ ] Changing background pictures. Light and dark mode will have their own set of pictures: one highlighting the greatness of the Roman Empire (light), another one its ruins and decadence (dark).
+- [x] Dark mode/Light Mode
+  - [x] ~~Changing background pictures. Light and dark mode will have their own set of pictures: one highlighting the greatness of the Roman Empire (light), another one its ruins and decadence (dark).~~ The changing pictures were too distracting, so I've stuck to one picture for each mode.
+- [ ] Frontend tests using Cypress 
 - [ ] Option to manually change quotes
 - [ ] More quotes in the database 
 

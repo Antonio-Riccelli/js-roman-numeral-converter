@@ -239,7 +239,7 @@ const toggleMode = () => {
         modePicture.setAttribute("src", "images/sun-color.svg")
         document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
     }
-    
+
         navbar.classList.toggle("lightMode");
         navbar.classList.toggle("darkMode");
         input.classList.toggle("lightMode");
@@ -278,14 +278,15 @@ const toggleMode = () => {
         authorId.classList.toggle("placeholderColor");
         authorId.classList.toggle("border");
         authorId.classList.toggle("border-light");
-        quotesContainer.classList.toggle("darkMode");
-        quotesContainer.classList.toggle("lightMode");
-        quotesContainer.classList.toggle("border");
-        quotesContainer.classList.toggle("border-light");
 
-        let allQuotes = document.querySelector("#quotes-container").children;
+
+        let allQuotes = quotesContainer.children;
         console.log("These are all the quotes:", allQuotes, "Plus one", allQuotes[0])
         if (allQuotes.length) {
+            quotesContainer.classList.toggle("darkMode");
+            quotesContainer.classList.toggle("lightMode");
+            quotesContainer.classList.toggle("border");
+            quotesContainer.classList.toggle("border-light");
            for (let i = 0; i < allQuotes.length; i++) {
             allQuotes[i].classList.toggle("lightMode");
             allQuotes[i].classList.toggle("darkMode");
