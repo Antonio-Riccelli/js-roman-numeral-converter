@@ -7,6 +7,8 @@ let quoteByIdGenerated = false;
 let allQuotesGenerated = false;
 let quoteByAuthorGenerated = false;
 
+const quotesContainer = document.getElementById("quotes-container");
+
 // NUMBER CONVERSION CODE [start]
 
 // VALIDATE USER INPUT
@@ -145,24 +147,30 @@ setInterval(updateQuote, 12000)
 
 // QUOTE GENERATOR CODE [end]
 
+const checkQuoteContainerState = () => {
+    if (!quotesContainerState) {
+        quotesContainer.classList.toggle("p-2", "p-2");
+        if (colorMode) {
+            quotesContainer.classList.add("lightMode");
+            quotesContainer.classList.remove("darkMode");
+     
+        } else {
+            quotesContainer.classList.remove("darkMode");
+            quotesContainer.classList.add("border");
+            quotesContainer.classList.add("border-light");
+       
+        }
+    } 
+    quotesContainerState = true;
+}
+
 // RETRIEVE ALL QUOTES AND GENERATE ELEMENTS
 
 const getQuotesUponUserRequest = () => {
-    const quotesContainer = document.getElementById("quotes-container");
-    if (!quotesContainerState) {
-        if (colorMode) {
-            quotesContainer.classList.toggle("lightMode");
-        } else {
-            quotesContainer.classList.toggle("darkMode");
-        }
-    } 
 
-    quotesContainerState = true;
-    
-    quotesContainer.classList.toggle("p-2", "p-2");
     // RESET THE QUOTE CONTAINER SO AS TO NOT DUPLICATE QUOTES UPON CLICKING BUTTON
     quotesContainer.innerHTML = "";
-   
+    quotesContainerState = true;
     const idInput = +document.getElementById("quote-id").value;
     const nameInput = document.getElementById("authorName").value
 
@@ -170,6 +178,7 @@ const getQuotesUponUserRequest = () => {
     if (idInput === 0 || !idInput) {
         // IF NOT, CHECK WHETHER USER HAS INPUT AUTHOR NAME
         if (nameInput) {
+            checkQuoteContainerState();
             quoteByIdGenerated = false;
             allQuotesGenerated = false;
             quoteByAuthorGenerated = true;
@@ -192,6 +201,7 @@ const getQuotesUponUserRequest = () => {
             quotesContainer.appendChild(newQuoteWrapper);
     } else {
         // IF NO ID AND AUTHOR, THEN RETRIEVE ALL QUOTES
+        checkQuoteContainerState();
         quoteByIdGenerated = false;
         allQuotesGenerated = true;
         quoteByAuthorGenerated = false;
@@ -213,11 +223,12 @@ const getQuotesUponUserRequest = () => {
         })};
     } else {
         // IF USER HAS INPUT ID, RETRIEVE QUOTE BY ID
+        
         quoteByIdGenerated = true;
         allQuotesGenerated = false;
         quoteByAuthorGenerated = false;
         let retrievedQuote = quotes.find(quote => quote.id === idInput);
-        console.log(retrievedQuote);
+        // console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -232,9 +243,9 @@ const getQuotesUponUserRequest = () => {
                 newQuoteWrapper.classList.toggle("darkMode");
                 newQuoteWrapper.classList.toggle("border");
                 newQuoteWrapper.classList.toggle("border-light");
-                quotesContainer.classList.toggle("darkMode");
-                quotesContainer.classList.toggle("border");
-                quotesContainer.classList.toggle("border-light");
+                // quotesContainer.classList.toggle("darkMode");
+                // quotesContainer.classList.toggle("border");
+                // quotesContainer.classList.toggle("border-light");
             }
       
             const authorDiv = document.createElement("div");
