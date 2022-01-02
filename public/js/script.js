@@ -1,6 +1,12 @@
 import romanNumerals from "./numerals.js";
 import convertToRoman from "./conversion.js";
 
+let colorMode = true;
+let quotesContainerState = false;
+let quoteByIdGenerated = false;
+let allQuotesGenerated = false;
+let quoteByAuthorGenerated = false;
+
 // NUMBER CONVERSION CODE [start]
 
 // VALIDATE USER INPUT
@@ -139,18 +145,29 @@ setInterval(updateQuote, 12000)
 
 // QUOTE GENERATOR CODE [end]
 
-// RETRIEVE ALL QUOTES
+// RETRIEVE ALL QUOTES AND GENERATE ELEMENTS
 
 const getQuotesUponUserRequest = () => {
+    quotesContainerState = true;
     const quotesContainer = document.getElementById("quotes-container");
     quotesContainer.classList.toggle("p-2", "p-2");
     // RESET THE QUOTE CONTAINER SO AS TO NOT DUPLICATE QUOTES UPON CLICKING BUTTON
     quotesContainer.innerHTML = "";
+    if (colorMode) {
+        quotesContainer.classList.toggle("lightMode");
+    } else {
+        quotesContainer.classList.toggle("darkMode");
+    }
     const idInput = +document.getElementById("quote-id").value;
     const nameInput = document.getElementById("authorName").value
 
+    // CHECK WHETHER USER HAS INPUT ID 
     if (idInput === 0 || !idInput) {
+        // IF NOT, CHECK WHETHER USER HAS INPUT AUTHOR NAME
         if (nameInput) {
+            quoteByIdGenerated = false;
+            allQuotesGenerated = false;
+            quoteByAuthorGenerated = true;
             let retrievedQuote = quotes.find(quote => quote.author === nameInput);
         console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
@@ -169,6 +186,10 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.appendChild(quoteDiv);
             quotesContainer.appendChild(newQuoteWrapper);
     } else {
+        // IF NO ID AND AUTHOR, THEN RETRIEVE ALL QUOTES
+        quoteByIdGenerated = false;
+        allQuotesGenerated = true;
+        quoteByAuthorGenerated = false;
         quotes.forEach(quote => {
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -186,6 +207,10 @@ const getQuotesUponUserRequest = () => {
             quotesContainer.appendChild(newQuoteWrapper);
         })};
     } else {
+        // IF USER HAS INPUT ID, RETRIEVE QUOTE BY ID
+        quoteByIdGenerated = true;
+        allQuotesGenerated = false;
+        quoteByAuthorGenerated = false;
         let retrievedQuote = quotes.find(quote => quote.id === idInput);
         console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
@@ -194,7 +219,19 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
-            newQuoteWrapper.classList.toggle("lightMode");
+            if (colorMode) {
+                quotesContainer.classList.toggle("lightMode");
+
+                newQuoteWrapper.classList.toggle("lightMode");
+            } else {
+                newQuoteWrapper.classList.toggle("darkMode");
+                newQuoteWrapper.classList.toggle("border");
+                newQuoteWrapper.classList.toggle("border-light");
+                quotesContainer.classList.toggle("darkMode");
+                quotesContainer.classList.toggle("border");
+                quotesContainer.classList.toggle("border-light");
+            }
+      
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
             authorDiv.innerText = retrievedQuote.author;
@@ -215,9 +252,19 @@ function activateQuoteRequestInput() {
 activateQuoteRequestInput()
 
 // LIGHT/DARK MODE 
-let state = "light";
+
 
 const toggleMode = () => {
+    if (colorMode) {
+        colorMode = false;
+        modePicture.setAttribute("src", "images/sun-color.svg")
+        document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
+    } else {
+        colorMode = true;
+        modePicture.src = "images/sun-warm.svg";
+        document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
+    }
+
     let navbar = document.querySelector("nav");
     let input = document.querySelector("#input");
     let output = document.querySelector("#output-area");
@@ -232,13 +279,15 @@ const toggleMode = () => {
     console.log(quotesContainer);
     const source = modePicture.src;
 
-    if (/color/.test(source)) {
-        modePicture.src = "images/sun-warm.svg";
-        document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
-    } else {
-        modePicture.setAttribute("src", "images/sun-color.svg")
-        document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
-    }
+    // if (/color/.test(source)) {
+    //     modePicture.src = "images/sun-warm.svg";
+    //     document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
+    // } else {
+    //     modePicture.setAttribute("src", "images/sun-color.svg")
+    //     document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
+    // }
+
+
 
         navbar.classList.toggle("lightMode");
         navbar.classList.toggle("darkMode");
