@@ -147,23 +147,6 @@ setInterval(updateQuote, 12000)
 
 // QUOTE GENERATOR CODE [end]
 
-const checkQuoteContainerState = () => {
-    if (!quotesContainerState) {
-        quotesContainer.classList.toggle("p-2", "p-2");
-        if (colorMode) {
-            quotesContainer.classList.add("lightMode");
-            quotesContainer.classList.remove("darkMode");
-     
-        } else {
-            quotesContainer.classList.remove("darkMode");
-            quotesContainer.classList.add("border");
-            quotesContainer.classList.add("border-light");
-       
-        }
-    } 
-    quotesContainerState = true;
-}
-
 // RETRIEVE ALL QUOTES AND GENERATE ELEMENTS
 
 const getQuotesUponUserRequest = () => {
@@ -178,12 +161,10 @@ const getQuotesUponUserRequest = () => {
     if (idInput === 0 || !idInput) {
         // IF NOT, CHECK WHETHER USER HAS INPUT AUTHOR NAME
         if (nameInput) {
-            checkQuoteContainerState();
-            quoteByIdGenerated = false;
-            allQuotesGenerated = false;
-            quoteByAuthorGenerated = true;
+            // checkQuoteContainerState();
+
             let retrievedQuote = quotes.find(quote => quote.author === nameInput);
-        console.log(retrievedQuote);
+        // console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -201,17 +182,22 @@ const getQuotesUponUserRequest = () => {
             quotesContainer.appendChild(newQuoteWrapper);
     } else {
         // IF NO ID AND AUTHOR, THEN RETRIEVE ALL QUOTES
-        checkQuoteContainerState();
-        quoteByIdGenerated = false;
-        allQuotesGenerated = true;
-        quoteByAuthorGenerated = false;
+        // checkQuoteContainerState();
+
         quotes.forEach(quote => {
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
-            newQuoteWrapper.classList.toggle("lightMode");
+            if (colorMode) {
+                newQuoteWrapper.classList.add("lightMode");
+                newQuoteWrapper.classList.remove("darkMode");
+            } else {
+                newQuoteWrapper.classList.remove("lightMode");
+                newQuoteWrapper.classList.add("darkMode", "border", "border-light");
+            }
+            
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
             authorDiv.innerText = quote.author;
@@ -223,12 +209,7 @@ const getQuotesUponUserRequest = () => {
         })};
     } else {
         // IF USER HAS INPUT ID, RETRIEVE QUOTE BY ID
-        
-        quoteByIdGenerated = true;
-        allQuotesGenerated = false;
-        quoteByAuthorGenerated = false;
         let retrievedQuote = quotes.find(quote => quote.id === idInput);
-        // console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -236,16 +217,15 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
             if (colorMode) {
-                quotesContainer.classList.toggle("lightMode");
-
-                newQuoteWrapper.classList.toggle("lightMode");
+                quotesContainer.classList.add("lightMode");
+                quotesContainer.classList.remove("darkMode");
+                newQuoteWrapper.classList.add("lightMode");
+                newQuoteWrapper.classList.remove("darkMode");
             } else {
-                newQuoteWrapper.classList.toggle("darkMode");
-                newQuoteWrapper.classList.toggle("border");
-                newQuoteWrapper.classList.toggle("border-light");
-                // quotesContainer.classList.toggle("darkMode");
-                // quotesContainer.classList.toggle("border");
-                // quotesContainer.classList.toggle("border-light");
+                newQuoteWrapper.classList.add("darkMode", "border", "border-light");
+                newQuoteWrapper.classList.remove("lightMode");
+                quotesContainer.classList.remove("lightMode");
+                quotesContainer.classList.add("darkMode", "border", "border-light");
             }
       
             const authorDiv = document.createElement("div");
@@ -269,18 +249,9 @@ activateQuoteRequestInput()
 
 // LIGHT/DARK MODE 
 
-
+// SWITCH FUNCTION
 const toggleMode = () => {
-    if (colorMode) {
-        colorMode = false;
-        modePicture.setAttribute("src", "images/sun-color.svg")
-        document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
-    } else {
-        colorMode = true;
-        modePicture.src = "images/sun-warm.svg";
-        document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
-    }
-
+    let allQuotes = quotesContainer.children;
     let navbar = document.querySelector("nav");
     let input = document.querySelector("#input");
     let output = document.querySelector("#output-area");
@@ -291,74 +262,137 @@ const toggleMode = () => {
     let inputNumber = document.querySelector("#input-number");
     let quoteId = document.querySelector("#quote-id");
     let authorId = document.querySelector("#authorName");
-    let quotesContainer = document.querySelector("#quotes-container");
-    console.log(quotesContainer);
     const source = modePicture.src;
 
-    // if (/color/.test(source)) {
-    //     modePicture.src = "images/sun-warm.svg";
-    //     document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
-    // } else {
-    //     modePicture.setAttribute("src", "images/sun-color.svg")
-    //     document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
-    // }
+    // FROM LIGHT TO DARK
+    if (colorMode) {
+        colorMode = false;
+        modePicture.setAttribute("src", "images/sun-color.svg")
+        document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
+        navbar.classList.remove("lightMode");
+        navbar.classList.add("darkMode");
+        input.classList.add("darkMode", "border", "border-light");
+        input.classList.remove("lightMode");
+        output.classList.add("darkMode", "border", "border-light");
+        output.classList.remove("lightMode");
+        buttonSend.classList.add("darkMode", "border-light");
+        buttonSend.classList.remove("lightMode");
+        spanOutput.classList.add("border-light");
+        spanOutput.classList.remove("border-dark");
+        quoteWrapper.classList.remove("lightMode");
+        quoteWrapper.classList.add("darkMode", "border", "border-light");
+        quoteButton.classList.add("darkMode", "border", "border-light");
+        quoteButton.classList.remove("lightMode");
+        inputNumber.classList.add("darkMode", "border", "border-light", "placeholderColor");
+        inputNumber.classList.remove("lightMode");
+        quoteId.classList.add("darkMode", "border", "border-light", "placeholderColor");
+        quoteId.classList.remove("lightMode");
+        authorId.classList.add("darkMode", "placeholderColor", "border", "border-light");
+        authorId.classList.remove("lightMode");
 
-
-
-        navbar.classList.toggle("lightMode");
-        navbar.classList.toggle("darkMode");
-        input.classList.toggle("lightMode");
-        input.classList.toggle("darkMode");
-        input.classList.toggle("border-light");
-        input.classList.toggle("border");
-        output.classList.toggle("lightMode");
-        output.classList.toggle("darkMode");
-        output.classList.toggle("border");
-        output.classList.toggle("border-light");
-        buttonSend.classList.toggle("lightMode");
-        buttonSend.classList.toggle("darkMode");
-        buttonSend.classList.toggle("border-light");
-        spanOutput.classList.toggle("border-dark");
-        spanOutput.classList.toggle("border-light");
-        quoteWrapper.classList.toggle("lightMode");
-        quoteWrapper.classList.toggle("darkMode");
-        quoteWrapper.classList.toggle("border");
-        quoteWrapper.classList.toggle("border-light");
-        quoteButton.classList.toggle("lightMode");
-        quoteButton.classList.toggle("darkMode");
-        quoteButton.classList.toggle("border");
-        quoteButton.classList.toggle("border-light");
-        inputNumber.classList.toggle("lightMode");
-        inputNumber.classList.toggle("darkMode");
-        inputNumber.classList.toggle("placeholderColor");
-        inputNumber.classList.toggle("border");
-        inputNumber.classList.toggle("border-light");
-        quoteId.classList.toggle("lightMode");
-        quoteId.classList.toggle("darkMode");
-        quoteId.classList.toggle("placeholderColor");
-        quoteId.classList.toggle("border");
-        quoteId.classList.toggle("border-light");
-        authorId.classList.toggle("lightMode");
-        authorId.classList.toggle("darkMode");
-        authorId.classList.toggle("placeholderColor");
-        authorId.classList.toggle("border");
-        authorId.classList.toggle("border-light");
-
-
-        let allQuotes = quotesContainer.children;
-        console.log("These are all the quotes:", allQuotes, "Plus one", allQuotes[0])
         if (allQuotes.length) {
-            quotesContainer.classList.toggle("darkMode");
-            quotesContainer.classList.toggle("lightMode");
-            quotesContainer.classList.toggle("border");
-            quotesContainer.classList.toggle("border-light");
+            quotesContainer.classList.add("darkMode");
+            quotesContainer.classList.remove("lightMode");
+            quotesContainer.classList.add("border");
+            quotesContainer.classList.add("border-light");
            for (let i = 0; i < allQuotes.length; i++) {
-            allQuotes[i].classList.toggle("lightMode");
-            allQuotes[i].classList.toggle("darkMode");
-            allQuotes[i].classList.toggle("border");
-            allQuotes[i].classList.toggle("border-light");
+            allQuotes[i].classList.remove("lightMode");
+            allQuotes[i].classList.add("darkMode");
+            allQuotes[i].classList.add("border");
+            allQuotes[i].classList.add("border-light");
            }
         } 
+    } else {
+        //FROM DARK TO LIGHT
+        colorMode = true;
+        modePicture.src = "images/sun-warm.svg";
+        document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
+        navbar.classList.add("lightMode");
+        navbar.classList.remove("darkMode");
+        input.classList.remove("darkMode", "border", "border-light");
+        input.classList.add("lightMode");
+        output.classList.remove("darkMode", "border", "border-light");
+        output.classList.add("lightMode");
+        buttonSend.classList.remove("darkMode", "border-light");
+        buttonSend.classList.add("lightMode");
+        spanOutput.classList.remove("border-light");
+        spanOutput.classList.add("border-dark");
+        quoteWrapper.classList.add("lightMode");
+        quoteWrapper.classList.remove("darkMode", "border", "border-light");
+        quoteButton.classList.remove("darkMode", "border", "border-light");
+        quoteButton.classList.add("lightMode");
+        inputNumber.classList.remove("darkMode", "border", "border-light", "placeholderColor");
+        inputNumber.classList.add("lightMode");
+        quoteId.classList.remove("darkMode", "border", "border-light", "placeholderColor");
+        quoteId.classList.add("lightMode");
+        authorId.classList.remove("darkMode", "placeholderColor", "border", "border-light");
+        authorId.classList.add("lightMode");
+
+        if (allQuotes.length) {
+            quotesContainer.classList.remove("darkMode", "border", "border-light");
+            quotesContainer.classList.add("lightMode");
+  
+           for (let i = 0; i < allQuotes.length; i++) {
+            allQuotes[i].classList.add("lightMode");
+            allQuotes[i].classList.remove("darkMode", "border", "border-light");
+           }
+        } 
+    }
+
+        // navbar.classList.toggle("lightMode");
+        // navbar.classList.toggle("darkMode");
+        // input.classList.toggle("lightMode");
+        // input.classList.toggle("darkMode");
+        // input.classList.toggle("border-light");
+        // input.classList.toggle("border");
+        // output.classList.toggle("lightMode");
+        // output.classList.toggle("darkMode");
+        // output.classList.toggle("border");
+        // output.classList.toggle("border-light");
+        // buttonSend.classList.toggle("lightMode");
+        // buttonSend.classList.toggle("darkMode");
+        // // buttonSend.classList.toggle("border-light");
+        // spanOutput.classList.toggle("border-dark");
+        // spanOutput.classList.toggle("border-light");
+        // quoteWrapper.classList.toggle("lightMode");
+        // quoteWrapper.classList.toggle("darkMode");
+        // quoteWrapper.classList.toggle("border");
+        // quoteWrapper.classList.toggle("border-light");
+        // quoteButton.classList.toggle("lightMode");
+        // quoteButton.classList.toggle("darkMode");
+        // quoteButton.classList.toggle("border");
+        // quoteButton.classList.toggle("border-light");
+        // inputNumber.classList.toggle("lightMode");
+        // inputNumber.classList.toggle("darkMode");
+        // inputNumber.classList.toggle("placeholderColor");
+        // inputNumber.classList.toggle("border");
+        // inputNumber.classList.toggle("border-light");
+        // quoteId.classList.toggle("lightMode");
+        // quoteId.classList.toggle("darkMode");
+        // quoteId.classList.toggle("placeholderColor");
+        // quoteId.classList.toggle("border");
+        // quoteId.classList.toggle("border-light");
+        // authorId.classList.toggle("lightMode");
+        // authorId.classList.toggle("darkMode");
+        // authorId.classList.toggle("placeholderColor");
+        // authorId.classList.toggle("border");
+        // authorId.classList.toggle("border-light");
+
+
+        
+     
+        // if (allQuotes.length) {
+        //     quotesContainer.classList.toggle("darkMode");
+        //     quotesContainer.classList.toggle("lightMode");
+        //     quotesContainer.classList.toggle("border");
+        //     quotesContainer.classList.toggle("border-light");
+        //    for (let i = 0; i < allQuotes.length; i++) {
+        //     allQuotes[i].classList.toggle("lightMode");
+        //     allQuotes[i].classList.toggle("darkMode");
+        //     allQuotes[i].classList.toggle("border");
+        //     allQuotes[i].classList.toggle("border-light");
+        //    }
+        // } 
     
 }
 
