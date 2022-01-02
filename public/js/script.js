@@ -8,6 +8,7 @@ let allQuotesGenerated = false;
 let quoteByAuthorGenerated = false;
 
 const quotesContainer = document.getElementById("quotes-container");
+let par = document.getElementById("output");
 
 // NUMBER CONVERSION CODE [start]
 
@@ -25,10 +26,15 @@ const validate = function (input) {
 
 // ADD ROMAN NUMERAL TO HTML
 function outputRomanNumeral(roman) {
-    let par = document.getElementById("output");
+    // let par = document.getElementById("output");
     par.classList.remove("bg-danger", "text-white", "error-message");
      par.innerText = roman;
-    par.classList.add("border-bottom", "border-dark", "border-2");
+    par.classList.add("border-bottom",  "border-2");
+    if (colorMode) {
+        par.classList.add("border-dark");
+    } else {
+        par.classList.add("border-light");
+    }
 }
 
 // DISPLAY ERROR
@@ -161,10 +167,7 @@ const getQuotesUponUserRequest = () => {
     if (idInput === 0 || !idInput) {
         // IF NOT, CHECK WHETHER USER HAS INPUT AUTHOR NAME
         if (nameInput) {
-            // checkQuoteContainerState();
-
             let retrievedQuote = quotes.find(quote => quote.author === nameInput);
-        // console.log(retrievedQuote);
         quotesContainer.classList.toggle("p-1");
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -182,8 +185,6 @@ const getQuotesUponUserRequest = () => {
             quotesContainer.appendChild(newQuoteWrapper);
     } else {
         // IF NO ID AND AUTHOR, THEN RETRIEVE ALL QUOTES
-        // checkQuoteContainerState();
-
         quotes.forEach(quote => {
             const newQuoteWrapper = document.createElement("div");
             newQuoteWrapper.classList.toggle("p-3");
@@ -193,9 +194,13 @@ const getQuotesUponUserRequest = () => {
             if (colorMode) {
                 newQuoteWrapper.classList.add("lightMode");
                 newQuoteWrapper.classList.remove("darkMode");
+                quotesContainer.classList.add("lightMode");
+                quotesContainer.classList.remove("darkMode");
             } else {
                 newQuoteWrapper.classList.remove("lightMode");
                 newQuoteWrapper.classList.add("darkMode", "border", "border-light");
+                quotesContainer.classList.add("darkMode", "border","border-light");
+                quotesContainer.classList.remove("lightMode");
             }
             
             const authorDiv = document.createElement("div");
@@ -269,6 +274,8 @@ const toggleMode = () => {
         colorMode = false;
         modePicture.setAttribute("src", "images/sun-color.svg")
         document.body.style.backgroundImage = "url('../images/bw-1.jpg')";
+        par.classList.remove("border-dark");
+        par.classList.add("border-light");
         navbar.classList.remove("lightMode");
         navbar.classList.add("darkMode");
         input.classList.add("darkMode", "border", "border-light");
@@ -307,6 +314,8 @@ const toggleMode = () => {
         colorMode = true;
         modePicture.src = "images/sun-warm.svg";
         document.body.style.backgroundImage = "url('../images/bw-2.jpg')";
+        par.classList.add("border-dark");
+        par.classList.remove("border-light");
         navbar.classList.add("lightMode");
         navbar.classList.remove("darkMode");
         input.classList.remove("darkMode", "border", "border-light");
@@ -338,62 +347,6 @@ const toggleMode = () => {
            }
         } 
     }
-
-        // navbar.classList.toggle("lightMode");
-        // navbar.classList.toggle("darkMode");
-        // input.classList.toggle("lightMode");
-        // input.classList.toggle("darkMode");
-        // input.classList.toggle("border-light");
-        // input.classList.toggle("border");
-        // output.classList.toggle("lightMode");
-        // output.classList.toggle("darkMode");
-        // output.classList.toggle("border");
-        // output.classList.toggle("border-light");
-        // buttonSend.classList.toggle("lightMode");
-        // buttonSend.classList.toggle("darkMode");
-        // // buttonSend.classList.toggle("border-light");
-        // spanOutput.classList.toggle("border-dark");
-        // spanOutput.classList.toggle("border-light");
-        // quoteWrapper.classList.toggle("lightMode");
-        // quoteWrapper.classList.toggle("darkMode");
-        // quoteWrapper.classList.toggle("border");
-        // quoteWrapper.classList.toggle("border-light");
-        // quoteButton.classList.toggle("lightMode");
-        // quoteButton.classList.toggle("darkMode");
-        // quoteButton.classList.toggle("border");
-        // quoteButton.classList.toggle("border-light");
-        // inputNumber.classList.toggle("lightMode");
-        // inputNumber.classList.toggle("darkMode");
-        // inputNumber.classList.toggle("placeholderColor");
-        // inputNumber.classList.toggle("border");
-        // inputNumber.classList.toggle("border-light");
-        // quoteId.classList.toggle("lightMode");
-        // quoteId.classList.toggle("darkMode");
-        // quoteId.classList.toggle("placeholderColor");
-        // quoteId.classList.toggle("border");
-        // quoteId.classList.toggle("border-light");
-        // authorId.classList.toggle("lightMode");
-        // authorId.classList.toggle("darkMode");
-        // authorId.classList.toggle("placeholderColor");
-        // authorId.classList.toggle("border");
-        // authorId.classList.toggle("border-light");
-
-
-        
-     
-        // if (allQuotes.length) {
-        //     quotesContainer.classList.toggle("darkMode");
-        //     quotesContainer.classList.toggle("lightMode");
-        //     quotesContainer.classList.toggle("border");
-        //     quotesContainer.classList.toggle("border-light");
-        //    for (let i = 0; i < allQuotes.length; i++) {
-        //     allQuotes[i].classList.toggle("lightMode");
-        //     allQuotes[i].classList.toggle("darkMode");
-        //     allQuotes[i].classList.toggle("border");
-        //     allQuotes[i].classList.toggle("border-light");
-        //    }
-        // } 
-    
 }
 
 const modePicture = document.querySelector("#mode");

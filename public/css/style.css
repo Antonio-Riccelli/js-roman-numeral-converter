@@ -69,6 +69,15 @@ audio {
     z-index: 1;
 }
 
+.hoverColor:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.hoverColor:active {
+    background-color: lightgrey;
+}
+
 /* LIGHT/DARK MODE */
 
 .lightMode {
@@ -81,6 +90,9 @@ audio {
     color: var(--text-light);
 }
 
+#input:active {
+color: green;
+}
 
 /* ANIMATIONS, KEYFRAMES ETC. */
 .fadeInOut {
