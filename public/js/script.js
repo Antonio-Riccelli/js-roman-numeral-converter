@@ -27,8 +27,9 @@ const validate = function (input) {
 // ADD ROMAN NUMERAL TO HTML
 function outputRomanNumeral(roman) {
     // let par = document.getElementById("output");
+    let spanOutput = document.querySelector("#spanOutput");
     par.classList.remove("bg-danger", "text-white", "error-message");
-     par.innerText = roman;
+     spanOutput.innerText = roman;
     par.classList.add("border-bottom",  "border-2");
     if (colorMode) {
         par.classList.add("border-dark");

@@ -90,9 +90,7 @@ audio {
     color: var(--text-light);
 }
 
-#input:active {
-color: green;
-}
+
 
 /* ANIMATIONS, KEYFRAMES ETC. */
 .fadeInOut {

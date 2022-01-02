@@ -1,6 +1,6 @@
 # Roman numeral converter and quote generator
 
-![Page demo](/public/images/demo.gif)
+![Page demo](./public/images/demo4.gif)
 
  ---
 
@@ -47,17 +47,13 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
   - I have tried implementing Typed.JS on the converted number, but it seems to have issues with dynamically generated values, so I've currently put it aside a nice-to-have. 
   - The background image seems to stretch and pixelate when I generated another div to show all the quotes. I haven't spent time trying to fix this, but it's of the next tasks.
 
+- #### 02/01/2022
+  - Fixed several bugs with the dark/light mode feature. Looks fine now and there don't seem to be other issues. 
+    - Main takeaway: plan your code in advance. All the issues were the result of lack of planning and trying to find too many workarounds on the spot.
+  - Added feature to look up quotes by author. User can input a name and/or surname or any string, and a RegExp object will be used to to do the lookup. If both values are populated, it defaults to search by ID as more specific.
+  - Fixed some minor layout issues with Bootstrap.
 
 ---
-
-### To do:
-
-- [x] Dark mode/Light Mode
-  - [x] ~~Changing background pictures. Light and dark mode will have their own set of pictures: one highlighting the greatness of the Roman Empire (light), another one its ruins and decadence (dark).~~ The changing pictures were too distracting, so I've stuck to one picture for each mode.
-- [ ] Frontend tests using Cypress 
-- [ ] Option to manually change quotes
-- [ ] More quotes in the database 
-
 
 ---
 
