@@ -148,16 +148,21 @@ setInterval(updateQuote, 12000)
 // RETRIEVE ALL QUOTES AND GENERATE ELEMENTS
 
 const getQuotesUponUserRequest = () => {
-    quotesContainerState = true;
     const quotesContainer = document.getElementById("quotes-container");
+    if (!quotesContainerState) {
+        if (colorMode) {
+            quotesContainer.classList.toggle("lightMode");
+        } else {
+            quotesContainer.classList.toggle("darkMode");
+        }
+    } 
+
+    quotesContainerState = true;
+    
     quotesContainer.classList.toggle("p-2", "p-2");
     // RESET THE QUOTE CONTAINER SO AS TO NOT DUPLICATE QUOTES UPON CLICKING BUTTON
     quotesContainer.innerHTML = "";
-    if (colorMode) {
-        quotesContainer.classList.toggle("lightMode");
-    } else {
-        quotesContainer.classList.toggle("darkMode");
-    }
+   
     const idInput = +document.getElementById("quote-id").value;
     const nameInput = document.getElementById("authorName").value
 
