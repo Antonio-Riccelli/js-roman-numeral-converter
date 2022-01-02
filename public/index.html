@@ -37,16 +37,19 @@
 
     <!-- MAIN SECTION -->
     <main class="container mt-3">
-      <section class="row align-items-start text-center" id="container">
+      <section class="row align-items-start text-center justify-content-center" id="container">
         <!-- INPUT AREA -->
 
         <section
           class="
-            col-6
+            col-5
             justify-content-center
             align-content-center
             lightMode
             rounded-borders
+            m-lg-2
+            m-md-2
+            m-sm-2
           "
           id="input"
         >
@@ -73,7 +76,7 @@
 
         <!-- OUTPUT AREA -->
 
-        <section class="col-6 lightMode rounded-borders" id="output-area">
+        <section class="col-5 m-lg-2 m-md-2 m-sm-2 lightMode rounded-borders" id="output-area">
           <div class="popup noneHidden">
             <span id="justinian" class="noneHidden"> LOL! </span>
           </div>
@@ -94,9 +97,10 @@
           alt="picture"
           id="author-picture"
           class="col-6 col-sm-6 col-lg-6 mx-sm-auto col-md-6 rounded-borders"
+          title="Why so serious?"
         />
         <div
-          class="col-12 col-md-6 col-lg-6 lightMode h-25 rounded-borders"
+          class="col-12 col-md-8 col-lg-6 m-md-2 m-sm-2 lightMode h-25 rounded-borders"
           id="quotewrapper"
         >
           <q class="fst-italic"> </q>
@@ -104,9 +108,9 @@
         </div>
       </section>
 
-      <section class="row mt-3 mb-4" id="user-interaction">
-        <section class="col-12 rounded-borders" id="quote-wrapper">
-          <div class="mb-3 " id="user-input-wrapper">
+      <section class="row mt-3 mb-4 " id="user-interaction">
+        <section class="col-12  rounded-borders" id="quote-wrapper">
+          <div class="mb-3 d-sm-flex justify-content-md-center" id="user-input-wrapper">
             <input
               type="number"
               class="rounded-borders p-2 lightMode"
@@ -114,6 +118,7 @@
               name="quote-id"
               id="quote-id"
               placeholder="Search by quote ID"
+              title="Search by quote ID"
             />
             <input
               type="text"
@@ -122,8 +127,9 @@
               name="authorName"
               id="authorName"
               placeholder="Search by author name"
+              title = "Search by author name"
             />
-            <button class="hoverColor rounded-pill p-2 lightMode" id="quote-button">
+            <button class="hoverColor rounded-pill p-2 lightMode" id="quote-button" title="Click here to get your quotes">
               Click here to get your quote/s
             </button>
           </div>

@@ -167,22 +167,64 @@ const getQuotesUponUserRequest = () => {
     if (idInput === 0 || !idInput) {
         // IF NOT, CHECK WHETHER USER HAS INPUT AUTHOR NAME
         if (nameInput) {
-            let retrievedQuote = quotes.find(quote => quote.author === nameInput);
-        quotesContainer.classList.toggle("p-1");
+            // console.log(nameInput, typeof nameInput);
+            let authorName = nameInput.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ");
+            console.log(authorName);
+            let regexp = new RegExp(authorName, "ig");
+            console.log(regexp)
+            let retrievedQuote = quotes.filter(quote => regexp.test(quote.author));
+            console.log("Here are the retrieved quotes", retrievedQuote, Array.isArray(retrievedQuote));
+            retrievedQuote.forEach(q => {
+            quotesContainer.classList.add("p-2");
             const newQuoteWrapper = document.createElement("div");
-            newQuoteWrapper.classList.toggle("p-3");
-            newQuoteWrapper.classList.toggle("m-4");
-            newQuoteWrapper.classList.toggle("shadow");
-            newQuoteWrapper.classList.toggle("rounded-borders");
-            newQuoteWrapper.classList.toggle("lightMode");
+            newQuoteWrapper.classList.add("p-3");
+            newQuoteWrapper.classList.add("m-4");
+            newQuoteWrapper.classList.add("shadow");
+            newQuoteWrapper.classList.add("rounded-borders");
+            if (colorMode) {
+                newQuoteWrapper.classList.add("lightMode");
+                newQuoteWrapper.classList.remove("darkMode");
+                quotesContainer.classList.add("lightMode");
+                quotesContainer.classList.remove("darkMode", "border", "border-light");
+            } else {
+                newQuoteWrapper.classList.add("darkMode", "border", "border-light");
+                newQuoteWrapper.classList.remove("lightMode");
+                quotesContainer.classList.remove("lightMode");
+                quotesContainer.classList.add("darkMode", "border", "border-light");
+            }
+            
             const authorDiv = document.createElement("div");
             const quoteDiv = document.createElement("q");
-            authorDiv.innerText = retrievedQuote.author;
-            authorDiv.classList.toggle("display-6");
-            quoteDiv.innerText = retrievedQuote.quote;
+            authorDiv.innerText = q.author;
+            authorDiv.classList.add("display-6");
+            quoteDiv.innerText = q.quote;
             newQuoteWrapper.appendChild(authorDiv);
             newQuoteWrapper.appendChild(quoteDiv);
             quotesContainer.appendChild(newQuoteWrapper);
+            })
+
+        // quotesContainer.classList.add("p-1");
+        //     const newQuoteWrapper = document.createElement("div");
+        //     newQuoteWrapper.classList.add("p-3");
+        //     newQuoteWrapper.classList.add("m-4");
+        //     newQuoteWrapper.classList.add("shadow");
+        //     newQuoteWrapper.classList.add("rounded-borders");
+        //     if (colorMode) {
+        //         newQuoteWrapper.classList.add("lightMode");
+        //         newQuoteWrapper.classList.remove("darkMode");
+        //     } else {
+        //         newQuoteWrapper.classList.add("darkMode", "border", "border-light");
+        //         newQuoteWrapper.classList.remove("lightMode");
+        //     }
+            
+        //     const authorDiv = document.createElement("div");
+        //     const quoteDiv = document.createElement("q");
+        //     authorDiv.innerText = retrievedQuote.author;
+        //     authorDiv.classList.add("display-6");
+        //     quoteDiv.innerText = retrievedQuote.quote;
+        //     newQuoteWrapper.appendChild(authorDiv);
+        //     newQuoteWrapper.appendChild(quoteDiv);
+        //     quotesContainer.appendChild(newQuoteWrapper);
     } else {
         // IF NO ID AND AUTHOR, THEN RETRIEVE ALL QUOTES
         quotes.forEach(quote => {
@@ -191,6 +233,7 @@ const getQuotesUponUserRequest = () => {
             newQuoteWrapper.classList.toggle("m-4");
             newQuoteWrapper.classList.toggle("shadow");
             newQuoteWrapper.classList.toggle("rounded-borders");
+            quotesContainer.classList.add("p-2");
             if (colorMode) {
                 newQuoteWrapper.classList.add("lightMode");
                 newQuoteWrapper.classList.remove("darkMode");
