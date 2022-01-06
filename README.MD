@@ -54,7 +54,8 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
   - Fixed some minor layout issues with Bootstrap.
 
 ---
-
+### To do
+  - [ ] Deploy app on Heroku
 ---
 
  #### Approaching the conversion algorithm:
