@@ -7,11 +7,29 @@
 ## Description
 A full-stack app consisting of a Roman Numeral Converter and a random quote generator.
 
-The user can input the standard number and immediately obtain the output in Roman numerals. Meanwhile, beneath the input form, different quotes from Roman authors, accompanied by author's name and picture, are displayed.
+The user can input the Arabic number and immediately obtain the output in Roman numerals. Meanwhile, beneath the input form, different quotes from Roman authors, accompanied by author's name and picture, are displayed.
 
-The quotes are stored in a Postgres database hosted on Heroku and are retrieved via an API fetch call. This starts a GET request through the server that returns the array of quotes, which is then iterated randomly.
+The backend is hosted on Heroku, the quotes are stored in a PostgresQL database and retrieved via an API fetch call. This starts a GET request through the server that returns the array of quotes, which is then iterated through randomly.
+
+The frontend is built using vanilla HTML, CSS and JavaScript. Bootstrap has been implemented to streamline styling and layout. 
 
 ---
+
+## How to use it
+
+- To convert a number, enter your Arabic numberal in the input section and click **Convert**. The Roman numeral will be displayed in the **Output** section.
+![demo](public/images/demo2.jpg)
+- To retrieve quotes, use the provided fields. You can: 
+  - Leave input fields blank and click the button to get all quotes
+  - Find quotes by an ID number
+  - Find quotes by author name or any string. The regular expression will find anything that matches the provided string.
+![demo](public/images/demo3.jpg)
+## Installation
+
+- Clone the repo to your desired folder
+- Open your IDE in the project root folder
+- run `npm i` to install all dependencies
+- Run either the "start" or "dev" scripts to spin up the app
 
 ## Tech
 
@@ -54,9 +72,6 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
   - Fixed some minor layout issues with Bootstrap.
 
 ---
-### To do
-  - [ ] Deploy app on Heroku
----
 
  #### Approaching the conversion algorithm:
 
@@ -74,5 +89,7 @@ The quotes are stored in a Postgres database hosted on Heroku and are retrieved 
 
 ----
 
+### LICENSE
 
+[MIT](https://spdx.org/licenses/MIT.html)
  
