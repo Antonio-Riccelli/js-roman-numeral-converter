@@ -5,7 +5,7 @@ const router = express.Router();
 import { getAllQuotes, getQuoteById, addQuote } from "../models/quotes.js";
 
 /* GET ALL QUOTES. */
-router.get("/", async function (req, res, next) {
+router.get("/quotes", async function (req, res, next) {
   const quotes = await getAllQuotes();
   res.json({success: true, 
             message: "All quotes have been retrieved.",
