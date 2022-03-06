@@ -116,7 +116,7 @@ init();
 const url = "https://roman-authors-quotes.herokuapp.com/quotes";
 
 async function getQuotes() {
-    const response = await fetch(`${url}/quotes/quotes`);
+    const response = await fetch(`${url}/quotes`);
     const { payload } = await response.json();
     console.log(payload);
     return payload;
