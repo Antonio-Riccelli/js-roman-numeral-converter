@@ -113,7 +113,7 @@ init();
 
 // FETCH QUOTE ARRAY FROM HEROKU POSTGRES DATABASE
 
-const url = "https://roman-authors-quotes.herokuapp.com/";
+const url = "https://roman-authors-quotes.herokuapp.com/quotes";
 
 async function getQuotes() {
     const response = await fetch(`${url}/users`);
