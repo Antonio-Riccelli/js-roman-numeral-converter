@@ -8,14 +8,20 @@
 
 
 body {
-    background-image: url("../images/bw-2.jpg");
+    /* background-image: url("../images/bw-2.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover; */
+
+    background: url("../images/bw-2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     font-family: 'Space Mono', monospace;
 }
 
-.rounded-borders{
+.rounded-borders {
     border-radius: 30px;
 }
 
@@ -30,14 +36,15 @@ nav {
 
 .placeholderColor::-webkit-input-placeholder {
     color: var(--text-light);
- }
+}
 
 audio {
     display: none;
     visibility: hidden;
 }
 
-#quote-id, #authorName {
+#quote-id,
+#authorName {
     width: 26%;
     text-align: center;
 }
@@ -46,14 +53,14 @@ audio {
 #mode {
     border-radius: 50%;
     width: 50px;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     z-index: 3;
 }
 
 #justinian {
     display: none;
-     visibility: hidden;
+    visibility: hidden;
     position: absolute;
     width: 150px;
     height: 150px;
@@ -82,7 +89,7 @@ audio {
 
 .lightMode {
     background-color: var(--light-tone);
-    color: var(--text-dark); 
+    color: var(--text-dark);
 }
 
 .darkMode {
@@ -95,15 +102,17 @@ audio {
 /* ANIMATIONS, KEYFRAMES ETC. */
 .fadeInOut {
     opacity: 0;
-    animation: 4s ease-in-out  fadeIn; 
+    animation: 4s ease-in-out fadeIn;
 }
 
 @keyframes fadeIn {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
     }
 
+    50% {
+        opacity: 1;
+    }
+}
