@@ -48,6 +48,13 @@ The frontend is built using vanilla HTML, CSS and JavaScript. Bootstrap has been
 - [express-generator-esmodules](https://www.npmjs.com/package/express-generator-esmodules)
 
 ---
+
+### LICENSE
+
+[MIT](https://spdx.org/licenses/MIT.html)
+
+--- 
+
 ### Project Chronicles
 
 - ##### 26/12/2021
@@ -89,7 +96,5 @@ The frontend is built using vanilla HTML, CSS and JavaScript. Bootstrap has been
 
 ----
 
-### LICENSE
 
-[MIT](https://spdx.org/licenses/MIT.html)
  
